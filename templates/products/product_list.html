@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    <h1>Productos</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Tipo Producto</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+           {% if object_list %}  {% comment %} ista basadas en funciones ==> if products {% endcomment %}
+           {% for product in object_list %} {% comment %} ista basadas en funciones ==> for product in products {% endcomment %}
+            <tr>
+              <td>{{ product.id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.mark }}</td>
+              <td>{{ product.product_types }}</td>
+              <td>
+                  <a class="btn btn-primary"
+                     href="{% url 'producto:product_edit' product.id %}">Editar</a>
+
+                  <a class="btn btn-danger"
+                     href="{% url 'producto:product_delete' product.id %}">Eliminar</a>
+              </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <h1>No hay registros</h1>
+            {% endif %}
+          </tbody>
+        </table>
+{% endblock %}

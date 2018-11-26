@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+    <h1>Productos</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>Desea eliminar el Registro de {{ object.name }} ?</h3>  <!-- products.name  -->
+        <button class="btn btn-danger" type="submit">Si, Eliminar</button>
+        <a class="btn btn-primary" href="{% url 'producto:product_list' %}">Cancelar</a>
+
+    </form>
+{% endblock %}
